@@ -1,6 +1,6 @@
 package org.junit.rules;
 
-import org.junit.AssumptionViolatedException;
+import AssumptionBreachedException;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
