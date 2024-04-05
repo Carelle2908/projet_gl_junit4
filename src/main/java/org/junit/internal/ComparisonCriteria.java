@@ -93,8 +93,7 @@ public abstract class ComparisonCriteria {
             return componentType.getName();
         }
     }
-    
-    
+
     private boolean isArray(Object expected) {
         return expected != null && expected.getClass().isArray();
     }
