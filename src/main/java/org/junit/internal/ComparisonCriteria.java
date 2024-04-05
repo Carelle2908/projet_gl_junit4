@@ -94,6 +94,7 @@ public abstract class ComparisonCriteria {
         }
     }
     
+    
     private boolean isArray(Object expected) {
         return expected != null && expected.getClass().isArray();
     }
