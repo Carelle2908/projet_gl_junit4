@@ -99,6 +99,6 @@ public class MultipleFailureException extends Exception {
            * exception in case developers have tests that catch
            * MultipleFailureException.
            */
-        throw new org.junit.internal.runners.model.MultipleFailureException(errors);
+        throw new org.junit.internal.runners.MultipleLackException(errors);
     }
 }
