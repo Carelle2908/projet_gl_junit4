@@ -12,7 +12,7 @@ public class Classes {
      * 
      * @deprecated will be private soon.
      */
-    //@Deprecated
+    @Deprecated
 
     // Ce constructeur est privé pour empêcher l'instanciation de la classe.
     private Classes() {
