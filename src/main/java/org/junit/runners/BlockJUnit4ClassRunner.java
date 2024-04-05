@@ -61,7 +61,7 @@ import org.junit.validator.TestClassValidator;
  * @since 4.5
  */
 public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
-    private static TestClassValidator PUBLIC_CLASS_VALIDATOR = new PublicClassValidator();
+    private static TestClassValidator VALIDATOR = new PublicClassValidator();
 
     private final ConcurrentMap<FrameworkMethod, Description> methodDescriptions = new ConcurrentHashMap<FrameworkMethod, Description>();
 
@@ -158,7 +158,7 @@ public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
 
     private void validatePublicConstructor(List<Throwable> errors) {
         if (getTestClass().getJavaClass() != null) {
-            errors.addAll(PUBLIC_CLASS_VALIDATOR.validateTestClass(getTestClass()));
+            errors.addAll(VALIDATOR.validateTestClass(getTestClass()));
         }
     }
 
