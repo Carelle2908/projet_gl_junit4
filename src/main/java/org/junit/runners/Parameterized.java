@@ -494,7 +494,7 @@ public class Parameterized extends Suite {
         private TestWithParameters createTestWithParameters(
                 TestClass testClass, String pattern, int index,
                 Object[] parameters) {
-            String finalPattern = pattern.replaceAll("\\{index\\}",
+            String finalPattern = pattern.replace("\\{index\\}",
                     Integer.toString(index));
             String name = MessageFormat.format(finalPattern, parameters);
             return new TestWithParameters("[" + name + "]", testClass,
