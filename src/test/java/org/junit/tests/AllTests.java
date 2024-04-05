@@ -2,7 +2,7 @@ package org.junit.tests;
 
 import junit.framework.JUnit4TestAdapter;
 import junit.framework.Test;
-import org.junit.AssumptionViolatedExceptionTest;
+import AssumptionBreachedExceptionTest;
 import org.junit.internal.AllInternalTests;
 import org.junit.rules.AllRulesTests;
 import org.junit.runner.AllRunnerTests;

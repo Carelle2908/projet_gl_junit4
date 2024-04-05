@@ -3,7 +3,7 @@ package org.junit.rules;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.AssumptionViolatedException;
+import AssumptionBreachedException;
 import org.junit.Rule;
 import org.junit.runner.Description;
 import org.junit.runners.model.MultipleFailureException;

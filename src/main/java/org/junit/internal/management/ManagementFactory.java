@@ -41,6 +41,22 @@ public class ManagementFactory {
     }
   }
 
+   /**
+   * @see java.lang.management.ManagementFactory#getRuntimeMXBean()
+   */
+  public static RuntimeMXBean getRuntimeMXBean() {
+    return RuntimeHolder.RUNTIME_MX_BEAN;
+  }
+
+  /**
+   * @see java.lang.management.ManagementFactory#getThreadMXBean()
+   */
+  public static ThreadMXBean getThreadMXBean() {
+    return ThreadHolder.THREAD_MX_BEAN;
+  }
+
+
+
   private static final class RuntimeHolder {
     private static final RuntimeMXBean RUNTIME_MX_BEAN =
         getBean(FactoryHolder.getBeanObject("getRuntimeMXBean"));
@@ -59,19 +75,5 @@ public class ManagementFactory {
       return threadMxBean != null
           ? new ReflectiveThreadMXBean(threadMxBean) : new FakeThreadMXBean();
     }
-  }
-
-  /**
-   * @see java.lang.management.ManagementFactory#getRuntimeMXBean()
-   */
-  public static RuntimeMXBean getRuntimeMXBean() {
-    return RuntimeHolder.RUNTIME_MX_BEAN;
-  }
-
-  /**
-   * @see java.lang.management.ManagementFactory#getThreadMXBean()
-   */
-  public static ThreadMXBean getThreadMXBean() {
-    return ThreadHolder.THREAD_MX_BEAN;
   }
 }

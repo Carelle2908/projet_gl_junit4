@@ -10,7 +10,7 @@ import static org.junit.Assume.assumeTrue;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.AssumptionViolatedException;
+import AssumptionBreachedException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

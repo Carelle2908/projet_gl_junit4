@@ -11,7 +11,7 @@ import org.hamcrest.Matcher;
  * @since 4.12
  */
 @SuppressWarnings("deprecation")
-public class AssumptionViolatedException extends org.junit.internal.AssumptionViolatedException {
+public class AssumptionBreachedException extends org.junit.internal.AssumptionViolatedException {
     private static final long serialVersionUID = 1L;
 
     /**

@@ -22,7 +22,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.junit.After;
-import org.junit.AssumptionViolatedException;
+import AssumptionBreachedException;
 import org.junit.Rule;
 import org.junit.Test;
 

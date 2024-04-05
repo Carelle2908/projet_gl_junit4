@@ -102,6 +102,15 @@ public class MaxCore {
         return constructLeafRequest(leaves);
     }
 
+     /**
+     * @param request a request to run
+     * @return a list of method-level tests to run, sorted in the order
+     *         specified in the class comment.
+     */
+    public List<Description> sortedLeavesForTest(Request request) {
+        return findLeaves(sortRequest(request));
+    }
+
     private Request constructLeafRequest(List<Description> leaves) {
         final List<Runner> runners = new ArrayList<Runner>();
         for (Description each : leaves) {
@@ -150,14 +159,6 @@ public class MaxCore {
         }
     }
 
-    /**
-     * @param request a request to run
-     * @return a list of method-level tests to run, sorted in the order
-     *         specified in the class comment.
-     */
-    public List<Description> sortedLeavesForTest(Request request) {
-        return findLeaves(sortRequest(request));
-    }
 
     private List<Description> findLeaves(Request request) {
         List<Description> results = new ArrayList<Description>();
