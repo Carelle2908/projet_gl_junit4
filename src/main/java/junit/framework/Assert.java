@@ -5,7 +5,7 @@ package junit.framework;
  *
  * @deprecated Please use {@link org.junit.Assert} instead.
  */
-@Deprecated
+//@Deprecated
 public class Assert {
     /**
      * Protect constructor since it is a static only class
