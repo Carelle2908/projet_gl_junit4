@@ -73,7 +73,7 @@ public final class Throwables {
     public static String getTrimmedStackTrace(Throwable exception) {
         List<String> trimmedStackTraceLines = getTrimmedStackTraceLines(exception);
         if (trimmedStackTraceLines.isEmpty()) {
-            return getFullStackTrace(exception);
+            return retrieveStackTraceAsString(exception);
         }
 
         StringBuilder result = new StringBuilder(exception.toString());
@@ -129,7 +129,7 @@ public final class Throwables {
 
     private static List<String> getCauseStackTraceLines(Throwable exception) {
         if (exception.getCause() != null || hasSuppressed(exception)) {
-            String fullTrace = getFullStackTrace(exception);
+            String fullTrace = retrieveStackTraceAsString(exception);
             BufferedReader reader = new BufferedReader(
                     new StringReader(fullTrace.substring(exception.toString().length())));
             List<String> causedByLines = new ArrayList<String>();
@@ -153,7 +153,7 @@ public final class Throwables {
         return Collections.emptyList();
     }
 
-    private static String getFullStackTrace(Throwable exception) {
+    private static String retrieveStackTraceAsString(Throwable exception) {
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         exception.printStackTrace(writer);
