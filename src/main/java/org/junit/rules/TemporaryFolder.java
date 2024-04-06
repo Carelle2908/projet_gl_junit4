@@ -93,7 +93,7 @@ public class TemporaryFolder extends ExternalResource {
      * 
      * @since 4.13
      */
-    public static class Builder {
+    public class Builder {
         private File parentFolder;
         private boolean assureDeletion;
 
