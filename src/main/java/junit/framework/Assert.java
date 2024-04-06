@@ -6,62 +6,16 @@ package junit.framework;
  * @deprecated Please use {@link org.junit.Assert} instead.
  */
 @Deprecated
-public class Assert {
-    /**
-     * Protect constructor since it is a static only class
-     */
-    protected Assert() {
+public class Assert  extends BaseAssert{
+    
+    @Override
+    protected AssertionError createAssertionError() {
+        return new AssertionFailedError();
     }
 
-    /**
-     * Asserts that a condition is true. If it isn't it throws
-     * an AssertionFailedError with the given message.
-     */
-    public static void assertTrue(String message, boolean condition) {
-        if (!condition) {
-            fail(message);
-        }
-    }
-
-    /**
-     * Asserts that a condition is true. If it isn't it throws
-     * an AssertionFailedError.
-     */
-    public static void assertTrue(boolean condition) {
-        assertTrue(null, condition);
-    }
-
-    /**
-     * Asserts that a condition is false. If it isn't it throws
-     * an AssertionFailedError with the given message.
-     */
-    public static void assertFalse(String message, boolean condition) {
-        assertTrue(message, !condition);
-    }
-
-    /**
-     * Asserts that a condition is false. If it isn't it throws
-     * an AssertionFailedError.
-     */
-    public static void assertFalse(boolean condition) {
-        assertFalse(null, condition);
-    }
-
-    /**
-     * Fails a test with the given message.
-     */
-    public static void fail(String message) {
-        if (message == null) {
-            throw new AssertionFailedError();
-        }
-        throw new AssertionFailedError(message);
-    }
-
-    /**
-     * Fails a test with no message.
-     */
-    public static void fail() {
-        fail(null);
+    @Override
+    protected AssertionError createAssertionError(String message) {
+        return new AssertionFailedError(message);
     }
 
     /**
