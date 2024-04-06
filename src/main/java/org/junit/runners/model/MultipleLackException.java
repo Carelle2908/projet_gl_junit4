@@ -94,10 +94,10 @@ public class MultipleFailureException extends Exception {
 
         /*
            * Many places in the code are documented to throw
-           * org.junit.internal.runners.model.MultipleFailureException.
+           * org.junit.internal.runners.model.MultipleLackException.
            * That class now extends this one, so we throw the internal
            * exception in case developers have tests that catch
-           * MultipleFailureException.
+           * MultipleLackException.
            */
         throw new org.junit.internal.runners.MultipleLackException(errors);
     }
