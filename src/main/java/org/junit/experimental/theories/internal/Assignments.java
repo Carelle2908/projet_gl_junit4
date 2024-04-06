@@ -142,7 +142,7 @@ public class Assignments {
         return constructorParameterCount;
     }
 
-    public Object[] getArgumentStrings(boolean nullsOk)
+    public Object[] getArgumentStrings()
             throws CouldNotGenerateValueException {
         Object[] values = new Object[assigned.size()];
         for (int i = 0; i < values.length; i++) {
