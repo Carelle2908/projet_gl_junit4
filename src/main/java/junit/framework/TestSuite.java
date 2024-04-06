@@ -41,6 +41,11 @@ import org.junit.internal.Throwables;
  * @see Test
  */
 public class TestSuite implements Test {
+    
+    private String fName;
+    private Vector<Test> fTests = new Vector<Test>(10); // Cannot convert this to List because it is used directly by some test runners
+    private static  String  classString = "Class " ;
+
 
     /**
      * ...as the moon sets over the early morning Merlin, Oregon
@@ -51,7 +56,7 @@ public class TestSuite implements Test {
         try {
             constructor = getTestConstructor(theClass);
         } catch (NoSuchMethodException e) {
-            return warning("Class " + theClass.getName() + " has no public constructor TestCase(String name) or TestCase()");
+            return warning(classString+ theClass.getName() + " has no public constructor TestCase(String name) or TestCase()");
         }
         Object test;
         try {
@@ -98,9 +103,7 @@ public class TestSuite implements Test {
         };
     }
 
-    private String fName;
-
-    private Vector<Test> fTests = new Vector<Test>(10); // Cannot convert this to List because it is used directly by some test runners
+   
 
     /**
      * Constructs an empty TestSuite.
@@ -118,33 +121,7 @@ public class TestSuite implements Test {
         addTestsFromTestCase(theClass);
     }
 
-    private void addTestsFromTestCase(final Class<?> theClass) {
-        fName = theClass.getName();
-        try {
-            getTestConstructor(theClass); // Avoid generating multiple error messages
-        } catch (NoSuchMethodException e) {
-            addTest(warning("Class " + theClass.getName() + " has no public constructor TestCase(String name) or TestCase()"));
-            return;
-        }
-
-        if (!Modifier.isPublic(theClass.getModifiers())) {
-            addTest(warning("Class " + theClass.getName() + " is not public"));
-            return;
-        }
-
-        Class<?> superClass = theClass;
-        List<String> names = new ArrayList<String>();
-        while (Test.class.isAssignableFrom(superClass)) {
-            for (Method each : MethodSorter.getDeclaredMethods(superClass)) {
-                addTestMethod(each, names, theClass);
-            }
-            superClass = superClass.getSuperclass();
-        }
-        if (fTests.size() == 0) {
-            addTest(warning("No tests found in " + theClass.getName()));
-        }
-    }
-
+    
     /**
      * Constructs a TestSuite from the given class with the given name.
      *
@@ -173,13 +150,6 @@ public class TestSuite implements Test {
         }
     }
 
-    private Test testCaseForClass(Class<?> each) {
-        if (TestCase.class.isAssignableFrom(each)) {
-            return new TestSuite(each.asSubclass(TestCase.class));
-        } else {
-            return warning(each.getCanonicalName() + " does not extend TestCase");
-        }
-    }
 
     /**
      * Constructs a TestSuite from the given array of classes with the given name.
@@ -305,4 +275,39 @@ public class TestSuite implements Test {
                 m.getName().startsWith("test") &&
                 m.getReturnType().equals(Void.TYPE);
     }
+    
+    private Test testCaseForClass(Class<?> each) {
+        if (TestCase.class.isAssignableFrom(each)) {
+            return new TestSuite(each.asSubclass(TestCase.class));
+        } else {
+            return warning(each.getCanonicalName() + " does not extend TestCase");
+        }
+    }
+    private void addTestsFromTestCase(final Class<?> theClass) {
+        fName = theClass.getName();
+        try {
+            getTestConstructor(theClass); // Avoid generating multiple error messages
+        } catch (NoSuchMethodException e) {
+            addTest(warning(classString+ theClass.getName() + " has no public constructor TestCase(String name) or TestCase()"));
+            return;
+        }
+
+        if (!Modifier.isPublic(theClass.getModifiers())) {
+            addTest(warning(classString+ theClass.getName() + " is not public"));
+            return;
+        }
+
+        Class<?> superClass = theClass;
+        List<String> names = new ArrayList<String>();
+        while (Test.class.isAssignableFrom(superClass)) {
+            for (Method each : MethodSorter.getDeclaredMethods(superClass)) {
+                addTestMethod(each, names, theClass);
+            }
+            superClass = superClass.getSuperclass();
+        }
+        if (fTests.size() == 0) {
+            addTest(warning("No tests found in " + theClass.getName()));
+        }
+    }
+    
 }
